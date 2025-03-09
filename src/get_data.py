@@ -21,3 +21,11 @@ df_hired = load_bq_table("hired_employees_")
 
 print(df_hired)
 
+
+# from cleaning_utils import trim_strings, clean_text, normalize_columns
+
+# df_hired = load_bq_table("hired_employees")
+# df_hired = trim_strings(df_hired)
+# df_hired = clean_text(df_hired)
+# df_hired = normalize_columns(df_hired)
+
