@@ -5,11 +5,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.exception_handlers import http_exception_handler
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-
-
 config_class = settings['development']
 app = FastAPI(debug=config_class.DEBUG)
-
 
 
 # Custom handler for 404 Not Found
@@ -20,7 +17,6 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
     return await http_exception_handler(request, exc)
 
 
-# Root endpoint
 @app.get("/")
 async def root():
     return {"message": "FastAPI app initialized"}
