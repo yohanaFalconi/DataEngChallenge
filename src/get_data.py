@@ -1,16 +1,22 @@
 import os
 import pandas as pd
 from google.cloud import bigquery
-# from src.utils.clean_utils import trim_strings, remove_special_chars, drop_na, normalize_columns_names
+from utils.clean_utils import (
+    validate_and_complete_headers,
+    format_datetime,
+    trim_strings,
+    remove_special_chars,
+    drop_na
+)
 
 # Inicialización
 client = bigquery.Client.from_service_account_json(r".\src\bigquery-credencial.json")
 
-# Project and dataset
+# Nombre del Proyecto y dataset
 project_id = "airy-boulevard-453221-c6"
 dataset_id = "dataset_jobs"
 
-# Load data
+# Carga de data
 def load_bq_table(table_name):
     try:
         sql = f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}`"
@@ -21,53 +27,73 @@ def load_bq_table(table_name):
         print(f"Error: Failed to load table '{table_name}': {e}")
         return pd.DataFrame()  
 
-# Set dataframes 
-# df_deparments = load_bq_table("departments_")
-# df_jobs = load_bq_table("jobs_")
-df_hired = load_bq_table("hired_employees_")
 
-# Validation 'hired_employees' table structure and enforce correct datetime formatting
+# Creación de Logs
+log_path = "logs/logs_validation_errors.txt"
+os.makedirs("logs", exist_ok=True)
+
+
 def hired_employees_validation(df):
-    expected_columns = {
-        "id": int,
-        "name": str,
-        "datetime": str,
-        "department_id": int,
-        "job_id": int
-    }
+    try:
+        df = validate_and_complete_headers(df, ["id", "name", "datetime", "department_id", "job_id"], log_path)
+        df = format_datetime(df, "datetime", log_path)
+        df = trim_strings(df)
+        df = remove_special_chars(df)
+        df = drop_na(df)
+        print(df.head(5))
+        print(df.info())
 
-    os.makedirs("logs", exist_ok=True)
-    log_path = "logs/logs_validation_errors.txt"
-
-    with open(log_path, "w") as log:
-        for col, expected_type in expected_columns.items():
-            if col not in df.columns:
-                log.write(f"ERROR: Missing column: {col}\n")
-        try:
-            print('df1', df.head(5))
-            df["datetime"] = pd.to_datetime(df["datetime"], errors='coerce')
-            df["datetime"] = df["datetime"].dt.strftime('%Y-%m-%dT%H:%M:%S')  # ISO 8601 como string
-        except Exception as e:
-            log.write(f"DATETIME ERROR: Failed to convert datetime column: {e}\n")
-    return df
+        return df
+    except Exception as e:
+        print(f"Error:{e}")
+        return pd.DataFrame()  
 
 
-hired_employees_validation(df_hired)
+def department_validation(df):
+    try:
+        df = validate_and_complete_headers(df, ["id", "department"], log_path)
+        df = trim_strings(df)
+        df = remove_special_chars(df)
+        df = drop_na(df)
+        print(df.head(5))
+        print(df.info())
+        return df
+    except Exception as e:
+        print(f"Error: {e}")
+        return pd.DataFrame()  
+
+def job_validation(df):
+    try:
+        df = validate_and_complete_headers(df, ["id", "job"], log_path)
+        df = trim_strings(df)
+        df = remove_special_chars(df)
+        df = drop_na(df)
+        print(df.info())
+        print(df.head(5))
+        return df
+    except Exception as e:
+        print(f"Error: {e}")
+        return pd.DataFrame()  
 
 
+def main():
+    # Set dataframes 
+    try:
+        df_departments = load_bq_table("departments_")
+        df_jobs = load_bq_table("jobs_")
+        df_hired_employees = load_bq_table("hired_employees_")
+    except Exception as e:
+        print(f"Error: {e}")
+        return
+
+    # Validaciones individuales
+    try:
+        hired_employees_validation(df_hired_employees)
+        job_validation(df_jobs)
+        job_validation(df_departments)
+    except Exception as e:
+        print(f"Error: {e}")
 
 
-
-
-
-# trim_strings, remove_special_chars, drop_na, normalize_columns_names
-
-# Separar válidos e inválidos
-    # invalid_rows = df[df.isnull().any(axis=1)]
-    # valid_rows = df.dropna()
-
-    # # Guardar inválidos en log
-    # if not invalid_rows.empty:
-    #     os.makedirs("logs", exist_ok=True)
-    #     invalid_rows.to_csv("logs/invalid_hired_employees.csv", index=False)
-    #     print(f"[!] {len(invalid_rows)} filas inválidas guardadas en logs/invalid_hired_employees.csv")
+if __name__ == "__main__":
+    main()
