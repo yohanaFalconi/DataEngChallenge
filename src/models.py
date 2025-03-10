@@ -67,16 +67,26 @@ async def custom_validation_exception_handler(request: Request, exc: RequestVali
     first_error = exc.errors()[0]["msg"]
     return PlainTextResponse(content=first_error, status_code=422)
 
-
+# Permite insertar 1-1000 registros en una sola petición
+def validate_batch_size(items: list, min_size: int = 1, max_size: int = 1000):
+    if not (min_size < len(items) <= max_size):
+        return HTMLResponse(
+            content=f"<h1>Error:</h1><pre>Batch size must be between {min_size} and {max_size}. Received: {len(items)}</pre>",
+            status_code=400
+        )
+    return None 
 ''''''
 def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:str):
 
     @app.post(route_path_post)
     async def insert_data(items: List[model]):  
         try:
+            batch_validation_error = validate_batch_size(items)
+            if batch_validation_error:
+                return batch_validation_error
+
             print('items',items)
             rows = [item.dict() for item in items]
-
             return rows
         except Exception as e:
             return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
