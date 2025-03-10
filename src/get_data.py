@@ -1,4 +1,5 @@
 import os
+import time
 import pandas as pd
 from google.cloud import bigquery
 from utils.clean_utils import (
@@ -10,19 +11,22 @@ from utils.clean_utils import (
 )
 
 # Inicialización
-client = bigquery.Client.from_service_account_json(r".\src\bigquery-credencial.json")
+# client = bigquery.Client.from_service_account_json(r".\src\bigquery-credencial.json")
 
-# Nombre del Proyecto y dataset
-project_id = "airy-boulevard-453221-c6"
-dataset_id = "dataset_jobs"
+# # Nombre del Proyecto y dataset
+# project_id = "airy-boulevard-453221-c6"
+# dataset_id = "dataset_jobs"
 
 # Carga de data
 def load_bq_table(table_name):
     try:
-        sql = f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}`"
-        query_job = client.query(sql)
-        results = query_job.result()
-        return pd.DataFrame([dict(row) for row in results])
+        # sql = f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}`"
+        # query_job = client.query(sql)
+        # results = query_job.result() 
+        results = pd.read_csv(f"./data_csv/{table_name}.csv",sep=",", header=None)
+        # return pd.DataFrame([dict(row) for row in results])
+        return results
+
     except Exception as e:
         print(f"Error: Failed to load table '{table_name}': {e}")
         return pd.DataFrame()  
@@ -40,8 +44,8 @@ def hired_employees_validation(df):
         df = trim_strings(df)
         df = remove_special_chars(df)
         df = drop_na(df)
-        print(df.head(5))
-        print(df.info())
+        # print(df.head(5))
+        # print(df.info())
 
         return df
     except Exception as e:
@@ -55,8 +59,8 @@ def department_validation(df):
         df = trim_strings(df)
         df = remove_special_chars(df)
         df = drop_na(df)
-        print(df.head(5))
-        print(df.info())
+        # print(df.head(5))
+        # print(df.info())
         return df
     except Exception as e:
         print(f"Error: {e}")
@@ -68,8 +72,8 @@ def job_validation(df):
         df = trim_strings(df)
         df = remove_special_chars(df)
         df = drop_na(df)
-        print(df.info())
-        print(df.head(5))
+        # print(df.info())
+        # print(df.head(5))
         return df
     except Exception as e:
         print(f"Error: {e}")
@@ -88,11 +92,14 @@ def main():
 
     # Validaciones individuales
     try:
-        hired_employees_validation(df_hired_employees)
-        job_validation(df_jobs)
-        job_validation(df_departments)
+        df_departments = department_validation(df_departments)
+        df_jobs = job_validation(df_jobs)
+        df_jobs = hired_employees_validation(df_hired_employees)
     except Exception as e:
         print(f"Error: {e}")
+
+    return df_departments, df_jobs, df_hired_employees
+
 
 
 if __name__ == "__main__":

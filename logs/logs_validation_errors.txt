@@ -6,3 +6,213 @@ DATETIME ERROR: Failed to convert 'datetime': 'datetime'
 ERROR: Missing column: department
 ERROR: Missing column: department
 ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'datetime'
+ERROR: Missing column: id
+ERROR: Missing column: job
+ERROR: Missing column: id
+ERROR: Missing column: department
+ERROR: Missing column: id
+ERROR: Missing column: department
+ERROR: Missing column: id
+ERROR: Missing column: department
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
