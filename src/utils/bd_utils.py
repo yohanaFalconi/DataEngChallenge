@@ -1,6 +1,9 @@
 import pandas as pd
 from google.cloud import bigquery
 from src.config import settings
+from src.utils.clean_utils import (
+    normalize_datetime_fields
+)
 import os
 import time
 
@@ -22,6 +25,7 @@ def load_bq_table_JSON(table_name,client,project_id,dataset_id):
         query_job = client.query(sql)
         results = query_job.result() 
         json_data = [dict(row) for row in results]
+        json_data = normalize_datetime_fields(json_data)
 
         print(f"Tabla '{table_name}' - Registros: {len(json_data)}")
         print(json_data)

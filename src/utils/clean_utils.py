@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+from datetime import datetime
 
 # Escribe cada cabecera y valida que la columna exista
 def validate_and_complete_headers(df, expected_columns, log_path):
@@ -38,6 +39,19 @@ def drop_na(df, threshold=0.5):
     return df.dropna(axis=1, thresh=int((1 - threshold) * len(df)))
 
 
+# Convierte datetime a ISO 8601 como string 
+def normalize_datetime_fields(data):
+    for row in data:
+        for key, value in row.items():
+            if isinstance(value, datetime):
+                row[key] = value.isoformat()
+            elif isinstance(value, str) and len(value) == 15 and 'T' in value:
+                try:
+                    parsed = datetime.strptime(value, "%Y%m%dT%H%M%S")
+                    row[key] = parsed.isoformat()
+                except ValueError:
+                    pass  
+    return data
 
 ''''''''''''''''''''
 # Reemplazar comillas
