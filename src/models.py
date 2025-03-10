@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from fastapi import Body
+from pydantic import BaseModel, ValidationError
 
 from src.config import settings
 from fastapi import FastAPI, Request
@@ -8,13 +10,37 @@ from fastapi.exception_handlers import http_exception_handler
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.models_get_json import( get_data_bd_json )
 import json
+from typing import List, Dict, Type
+from pydantic import BaseModel
 
-# get_data_bd_json('departments')
-# get_dataframe('jobs')
-# get_dataframe('hired_employees')
 config_class = settings['development']
 app = FastAPI(debug=config_class.DEBUG)
 
+#Modelos de las tablas
+class Department(BaseModel):
+    id: int
+    department: str
+
+class Job(BaseModel):
+    id: int
+    job: str
+
+class HiredEmployee(BaseModel):
+    id: int
+    name: str
+    datetime: str
+    department_id: int
+    job_id: int
+
+#Diccionario de clases permitidas
+TABLE_MODELS: Dict[str, Type[BaseModel]] = {
+    "departments": Department,
+    "jobs": Job,
+    "hired_employees": HiredEmployee
+}
+
+# ALLOWED_TABLES = {"departments", "jobs", "hired_employees"}
+ALLOWED_TABLES = TABLE_MODELS.keys()
 
 # Custom handler for 404 Not Found
 @app.exception_handler(StarletteHTTPException)
@@ -28,21 +54,36 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
 async def root():
     return {"message": "FastAPI app initialized"}
 
-ALLOWED_TABLES = {"departments", "jobs", "hired_employees"}
 
-@app.get("/data/{table_name}")
-async def get_data(table_name: str):  
-    try:
-        if table_name not in ALLOWED_TABLES:
-            return HTMLResponse(
-                content=f"<h1>Error:</h1><pre>Tabla '{table_name}' no permitida.</pre>",
-                status_code=400
-            )
+''''''
+def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:str):
 
-        data = get_data_bd_json(table_name) 
-        return data
-    except Exception as e:
-        return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
+    @app.post(route_path_post)
+    async def insert_data(items: List[model]):  
+        try:
+            print('items',items)
+            rows = [item.dict() for item in items]
 
+            return rows
+        except Exception as e:
+            return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
+''''''
 
+# items [Job(id=1, job='Developer'), Job(id=2, job='Data Anassslyst')]
+
+for table_name, model in TABLE_MODELS.items():
+    route_path = f"/data/{table_name}"
+
+    @app.get(route_path, response_model=List[model])
+    async def get_data(model=model, table_name=table_name):
+        try:
+            data = get_data_bd_json(table_name)
+            return data
+        except Exception as e:
+            return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
     
+    route_path_post = f"/data/{table_name}/add"
+    create_post_route(model, table_name,route_path_post)
+    
+  
+
