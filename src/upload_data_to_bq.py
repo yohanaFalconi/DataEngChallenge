@@ -6,6 +6,9 @@ import time
 from utils.clean_utils import (
     prepare_values_for_insert
 )
+from utils.bd_utils import (
+    test_bigquery_connection
+)
 
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
@@ -14,16 +17,6 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.jso
 project_id = "plucky-shell-453303-t9"
 dataset_id = "jobs_database"
 
-def test_bigquery_connection(project_id):
-    try:
-        client = bigquery.Client(project=project_id)
-        datasets = list(client.list_datasets())
-        if datasets:
-            print("Conexión exitosa. Datasets encontrados:")
-            for dataset in datasets:
-                print(f"- {dataset.dataset_id}")
-    except Exception as e:
-        print(f"Error al conectar a BigQuery: {e}")
 test_bigquery_connection(project_id)
 
 
@@ -32,7 +25,6 @@ def upload_dataframe_to_bq(df, table_name, project_id, dataset_id):
     try:
         client = bigquery.Client(project=project_id)
         table_ref = f"{project_id}.{dataset_id}.{table_name}"
-
         schema = []
         for column in df.columns:
             column_name = column if isinstance(column, str) else column[0]

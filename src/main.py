@@ -5,6 +5,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.exception_handlers import http_exception_handler
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+
 config_class = settings['development']
 app = FastAPI(debug=config_class.DEBUG)
 
