@@ -1,26 +1,31 @@
+import json
+import pandas as pd
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi import Body
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import PlainTextResponse
 from fastapi import Request
-
-
-from src.config import settings
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.exception_handlers import http_exception_handler
-from starlette.exceptions import HTTPException as StarletteHTTPException
-from src.models_get_json import( get_data_bd_json )
-import json
+
 from typing import List, Dict, Type
 from pydantic import BaseModel, ValidationError
 from pydantic import BaseModel, constr
+
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from src.config import settings
+from src.models_get_json import( get_data_bd_json )
+from src.upload_data_to_bq import( upload_dataframe_to_bq)
+from src.config import settings
+
 
 config_class = settings['development']
 app = FastAPI(debug=config_class.DEBUG)
 
 short_string = constr(max_length=50)
+config = settings['bd']
 
 #Modelos de las tablas
 class department(BaseModel):
@@ -48,8 +53,6 @@ TABLE_MODELS: Dict[str, Type[BaseModel]] = {
 # allowed_tables = {"departments", "jobs", "hired_employees"}
 allowed_tables = TABLE_MODELS.keys()
 
-
-
 @app.get("/")
 async def root():
     return {"message": "FastAPI app initialized"}
@@ -75,6 +78,18 @@ def validate_batch_size(items: list, min_size: int = 1, max_size: int = 1000):
             status_code=400
         )
     return None 
+
+# Elimina duplicados en los items que ingresan 
+def remove_duplicates_items(items: List[BaseModel]) -> List[BaseModel]:
+    seen = set()
+    unique_items = []    
+    for item in items:
+        item_tuple = tuple(sorted(item.model_dump().items()))
+        if item_tuple not in seen:
+            seen.add(item_tuple)
+            unique_items.append(item)
+    
+    return unique_items
 ''''''
 def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:str):
 
@@ -84,10 +99,16 @@ def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:s
             batch_validation_error = validate_batch_size(items)
             if batch_validation_error:
                 return batch_validation_error
+            
+            items = remove_duplicates_items(items)
+            items = [item.dict() for item in items]
+            df = pd.DataFrame(items)
 
-            print('items',items)
-            rows = [item.dict() for item in items]
-            return rows
+            print('items',df)
+            
+            upload_dataframe_to_bq(df, table_name, config.project_id, config.dataset_id)
+
+            return items
         except Exception as e:
             return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
 ''''''
