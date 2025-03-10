@@ -2,7 +2,7 @@ import os
 import time
 import pandas as pd
 from google.cloud import bigquery
-from utils.clean_utils import (
+from src.utils.clean_utils import (
     validate_and_complete_headers,
     format_datetime,
     trim_strings,
@@ -80,7 +80,7 @@ def job_validation(df):
         return pd.DataFrame()  
 
 
-def main():
+def get_validated_data():
     # Set dataframes 
     try:
         df_departments = load_bq_table("departments_")
@@ -94,7 +94,7 @@ def main():
     try:
         df_departments = department_validation(df_departments)
         df_jobs = job_validation(df_jobs)
-        df_jobs = hired_employees_validation(df_hired_employees)
+        df_hired_employees = hired_employees_validation(df_hired_employees)
     except Exception as e:
         print(f"Error: {e}")
 
@@ -103,4 +103,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    get_validated_data()

@@ -216,3 +216,8 @@ DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'l
 DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
 DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
 DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'

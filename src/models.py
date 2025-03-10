@@ -1,34 +1,48 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
-from starlette.exceptions import HTTPException as StarletteHTTPException
-from fastapi.exception_handlers import http_exception_handler
-from google.cloud import bigquery
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
 from src.config import settings
-import os
-import pandas as pd
-from src.utils.bd_utils import (
-    load_bq_table,
-    get_connection,
-    load_bq_table_JSON
-)
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.exception_handlers import http_exception_handler
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from src.models_get_json import( get_data_bd_json )
+import json
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
-config = settings['bd']
-project_id = config.project_id
-dataset_id = config.dataset_id
-client = bigquery.Client(project=project_id)
-
-#Inicialización
-def get_dataframe(table_name):
-    try:
-        get_connection(project_id)
-        data = load_bq_table_JSON(table_name, client, project_id, dataset_id)
-        
-        return JSONResponse(content={"data": data}, status_code=200)
-    except Exception as e:
-        return JSONResponse(content={"error": str(e)}, status_code=500)
-
-
-# get_dataframe('departments')
+# get_data_bd_json('departments')
 # get_dataframe('jobs')
-get_dataframe('hired_employees')
+# get_dataframe('hired_employees')
+config_class = settings['development']
+app = FastAPI(debug=config_class.DEBUG)
+
+
+# Custom handler for 404 Not Found
+@app.exception_handler(StarletteHTTPException)
+async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
+    if exc.status_code == 404:
+        return HTMLResponse(content="<h1>Page Not Found</h1>", status_code=404)
+    return await http_exception_handler(request, exc)
+
+
+@app.get("/")
+async def root():
+    return {"message": "FastAPI app initialized"}
+
+ALLOWED_TABLES = {"departments", "jobs", "hired_employees"}
+
+@app.get("/data/{table_name}")
+async def get_data(table_name: str):  
+    try:
+        if table_name not in ALLOWED_TABLES:
+            return HTMLResponse(
+                content=f"<h1>Error:</h1><pre>Tabla '{table_name}' no permitida.</pre>",
+                status_code=400
+            )
+
+        data = get_data_bd_json(table_name) 
+        return data
+    except Exception as e:
+        return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
+
+
+    

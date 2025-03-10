@@ -1,24 +1,21 @@
 from google.cloud import bigquery
 import pandas as pd
-from get_data import main as get_validated_data
 import os 
-import time
-from utils.clean_utils import (
-    prepare_values_for_insert
-)
-from utils.bd_utils import (
-    test_bigquery_connection
-)
+from src.get_data import get_validated_data
+from src.utils.clean_utils import prepare_values_for_insert
+from src.utils.bd_utils import get_connection
+from src.config import settings
+
 
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
 
-# Nombre del Proyecto y dataset
-project_id = "plucky-shell-453303-t9"
-dataset_id = "jobs_database"
+config = settings['bd']
+project_id = config.project_id
+dataset_id = config.dataset_id
+client = bigquery.Client(project=project_id)
 
-test_bigquery_connection(project_id)
-
+get_connection(project_id)
 
 # Cargar data a la bd
 def upload_dataframe_to_bq(df, table_name, project_id, dataset_id):
@@ -65,7 +62,7 @@ def upload_dataframe_to_bq(df, table_name, project_id, dataset_id):
 def main():
     try:
         df_departments, df_jobs, df_hired_employees = get_validated_data()
-        print('paso', df_departments)
+        # print('paso', df_departments)
     except Exception as e:
         print(f"Error get_data: {e}")
         return
