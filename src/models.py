@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi import Body
-from pydantic import BaseModel, ValidationError
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import PlainTextResponse
+from fastapi import Request
+
 
 from src.config import settings
 from fastapi import FastAPI, Request
@@ -11,48 +14,58 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.models_get_json import( get_data_bd_json )
 import json
 from typing import List, Dict, Type
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, constr
 
 config_class = settings['development']
 app = FastAPI(debug=config_class.DEBUG)
 
+short_string = constr(max_length=50)
+
 #Modelos de las tablas
-class Department(BaseModel):
+class department(BaseModel):
     id: int
-    department: str
+    department: short_string
 
-class Job(BaseModel):
+class job(BaseModel):
     id: int
-    job: str
+    job: short_string
 
-class HiredEmployee(BaseModel):
+class hired_employee(BaseModel):
     id: int
-    name: str
-    datetime: str
+    name: short_string
+    datetime: short_string
     department_id: int
     job_id: int
 
 #Diccionario de clases permitidas
 TABLE_MODELS: Dict[str, Type[BaseModel]] = {
-    "departments": Department,
-    "jobs": Job,
-    "hired_employees": HiredEmployee
+    "departments": department,
+    "jobs": job,
+    "hired_employees": hired_employee
 }
 
-# ALLOWED_TABLES = {"departments", "jobs", "hired_employees"}
-ALLOWED_TABLES = TABLE_MODELS.keys()
+# allowed_tables = {"departments", "jobs", "hired_employees"}
+allowed_tables = TABLE_MODELS.keys()
 
-# Custom handler for 404 Not Found
-@app.exception_handler(StarletteHTTPException)
-async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
-    if exc.status_code == 404:
-        return HTMLResponse(content="<h1>Page Not Found</h1>", status_code=404)
-    return await http_exception_handler(request, exc)
 
 
 @app.get("/")
 async def root():
     return {"message": "FastAPI app initialized"}
+
+# Manejo de errores para rutas no encontradas
+@app.exception_handler(StarletteHTTPException)
+async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
+    if exc.status_code == 404:
+        return HTMLResponse(content="<h1>Page Not Found</h1>", status_code=404)
+    return HTMLResponse(content=f"<h1>HTTP Error {exc.status_code}</h1>", status_code=exc.status_code)
+
+# Manejo de errores de validación 422 
+@app.exception_handler(RequestValidationError)
+async def custom_validation_exception_handler(request: Request, exc: RequestValidationError):
+    first_error = exc.errors()[0]["msg"]
+    return PlainTextResponse(content=first_error, status_code=422)
 
 
 ''''''
