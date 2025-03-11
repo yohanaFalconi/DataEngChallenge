@@ -1,5 +1,5 @@
 from fastapi.responses import HTMLResponse
-from src.data_analysis import (get_hires_by_quarter, get_departments_above_avg_hires) 
+from src.data_analysis.data_analysis import (get_hires_by_quarter, get_departments_above_avg_hires) 
 
 
 def hires_by_quarter_html(df):

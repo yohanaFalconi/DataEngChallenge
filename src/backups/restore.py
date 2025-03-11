@@ -1,9 +1,7 @@
 from google.cloud import bigquery
 import pandas as pd
 import fastavro
-import os
 from src.utils.clean_utils import drop_duplicates_ignore_columns
-
 
 # Lee un archivo AVRO y devuelve un df
 def read_avro_file_df(avro_path):

@@ -17,8 +17,8 @@ from src.database.get_data import ( load_bd_table, joinned_validation)
 from src.backups.backup_Avro import backup_table_to_avro
 from src.models_utils import ( validate_batch_size, remove_duplicates_items)
 from src.models_get_json import get_data_bd_json 
-from src.data_analysis import (get_hires_by_quarter, get_departments_above_avg_hires) 
-from src.data_analysis_html import (hires_by_quarter_html, departments_above_average_html) 
+from src.data_analysis.data_analysis import (get_hires_by_quarter, get_departments_above_avg_hires) 
+from src.data_analysis.data_analysis_html import (hires_by_quarter_html, departments_above_average_html) 
 
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"

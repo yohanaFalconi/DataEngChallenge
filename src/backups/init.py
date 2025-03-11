@@ -5,10 +5,6 @@ from fastapi.responses import JSONResponse
 from fastapi.exception_handlers import http_exception_handler
 from google.cloud import bigquery
 from src.utils.config import settings
-from src.utils.bd_utils import (
-    get_connection,
-    load_bq_table_JSON
-)
 from src.backups.restore import (
     read_avro_file_df,
     generate_restore_job_config_from_backup
