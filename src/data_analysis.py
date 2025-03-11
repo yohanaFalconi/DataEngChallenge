@@ -1,8 +1,8 @@
 import pandas as pd
-from src.database.get_data import (
-   load_bd_table,
-   joinned_validation
-)
+import os
+from src.utils.config import settings
+from google.cloud import bigquery
+from src.database.get_data import ( load_bd_table, joinned_validation)
 
 def get_hires_by_quarter(df):
    try:
@@ -54,9 +54,16 @@ def get_departments_above_avg_hires(df):
       return pd.DataFrame()
 
 
+# Inicialización
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
 
-df =  load_bd_table('joinned_table')
+config = settings['bd']
+project_id = config.project_id
+
+dataset_id = config.dataset_id
+client = bigquery.Client(project=project_id)
+
+df =  load_bd_table('joinned_table', dataset_id)
 df = joinned_validation(df)
-print(df)
-
+get_hires_by_quarter(df)
 get_departments_above_avg_hires(df)

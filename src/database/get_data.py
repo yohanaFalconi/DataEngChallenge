@@ -59,7 +59,7 @@ os.makedirs(os.path.dirname(log_path), exist_ok=True)
 # Limpieza de la tabla joinned
 def joinned_validation(df):
     try:
-        df = trim_strings(log_path=log_path)
+        df = trim_strings(df,log_path=log_path)
         df = drop_rows_with_mostly_nans(df, min_valid=3,log_path=log_path)
         df = format_datetime(df, "datetime", log_path=log_path)
         df = drop_duplicate_rows(df, log_path=log_path)

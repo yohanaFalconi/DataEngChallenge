@@ -1,22 +1,5 @@
-
-=== [Validation Error] ===
-Timestamp: 2025-03-11 14:47:08.582344
-Path: /data/departments/add
-Validation errors: [{'type': 'int_parsing', 'loc': ('body', 1, 'id'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': 'nn'}]
-Invalid body:
-[
-{
-    "id": 1,
-    "department": "Department 1"
-  },
-  {
-    "id": "nn",
-    "department": "Department 2"
-  }
-	]
-
-=== [Validation Error] ===
-Timestamp: 2025-03-11 14:47:35.584060
+Validation Error 
+Timestamp: 2025-03-11 15:06:14.008923
 Path: /data/departments/add
 Validation errors: [{'type': 'int_parsing', 'loc': ('body', 0, 'id'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': 'rr4'}, {'type': 'int_parsing', 'loc': ('body', 1, 'id'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': 'nn'}]
 Invalid body:

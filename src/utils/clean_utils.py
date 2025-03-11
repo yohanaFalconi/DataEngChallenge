@@ -44,27 +44,25 @@ def validate_and_complete_headers(df, expected_columns, log_path=None):
 def format_datetime(df, datetime_col, log_path=None):
     try:
         original_values = df[datetime_col].copy()
-        df[datetime_col] = pd.to_datetime(df[datetime_col], errors='coerce')
+        df[datetime_col] = pd.to_datetime(df[datetime_col], format='mixed', errors='coerce')
         failed_conversion = df[df[datetime_col].isna() & original_values.notna()]
-        df[datetime_col] = df[datetime_col].dt.strftime('%Y-%m-%dT%H:%M:%S')
-
         if log_path and not failed_conversion.empty:
-            os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
             with open(log_path, "a", encoding="utf-8") as log:
                 log.write("\n--- DATETIME FORMAT WARNINGS ---\n")
-                for idx, val in failed_conversion[datetime_col].items():
+                for idx in failed_conversion.index:
                     log.write(f"Row {idx}: Could not parse datetime value '{original_values[idx]}'\n")
+
+        df = df[df[datetime_col].notna()].copy()
+        df[datetime_col] = df[datetime_col].dt.strftime('%Y-%m-%dT%H:%M:%S')
         return df
+
     except Exception as e:
         print(f"Error while formatting datetime column '{datetime_col}': {e}")
         return df
 
-#Elimina espacios al inicio y final de todas las columnas tipo string
-# def trim_strings(df):
-#     for col in df.select_dtypes(include='object').columns:
-#         df[col] = df[col].str.strip()
-#     return df
 
+#Elimina espacios al inicio y final de todas las columnas tipo string
 def trim_strings(df, log_path=None):
     try:
         modified_entries = []
