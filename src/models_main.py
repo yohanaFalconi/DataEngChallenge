@@ -18,19 +18,14 @@ from src.backups.backup_Avro import backup_table_to_avro
 from src.models_utils import ( validate_batch_size, remove_duplicates_items)
 from src.models_get_json import get_data_bd_json 
 from src.data_analysis import (get_hires_by_quarter, get_departments_above_avg_hires) 
+from src.data_analysis_html import (hires_by_quarter_html, departments_above_average_html) 
 
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
-
 config = settings['bd']
 project_id = config.project_id
 dataset_id = config.dataset_id
 client = bigquery.Client(project=project_id)
-
-df =  load_bd_table('joinned_table', dataset_id)
-df = joinned_validation(df)
-get_hires_by_quarter(df)
-get_departments_above_avg_hires(df)
 
 # RestApi Config
 config_class = settings['development']
@@ -142,63 +137,22 @@ def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:s
 
 
 for table_name, model in TABLE_MODELS.items():
-
     route_path = f"/data/{table_name}"
     get_route(model, table_name, route_path)
 
-    
     route_path_post = f"/data/{table_name}/add"
     create_post_route(model, table_name,route_path_post)
     
 
 df =  load_bd_table('joinned_table', dataset_id)
 df_joinned = joinned_validation(df)
-get_hires_by_quarter(df)
-# get_departments_above_avg_hires(df)
-
 
 @app.get("/data/hires-by-quarter", response_class=HTMLResponse)
-def hires_by_quarter_html():
-    try:
-        df_result = get_hires_by_quarter(df_joinned)
+async def table_hires_by_quarter():
+    return hires_by_quarter_html(df_joinned)
 
-        # Convertimos a HTML con estilos básicos
-        html_table = df_result.to_html(index=False, border=1, justify="center", classes="dataframe")
 
-        # Envolvemos en un HTML simple
-        html_content = f"""
-        <html>
-            <head>
-                <title>Hires by Quarter</title>
-                <style>
-                    body {{
-                        font-family: Arial, sans-serif;
-                        padding: 40px;
-                        background-color: #f9f9f9;
-                    }}
-                    table.dataframe {{
-                        width: 80%;
-                        margin: auto;
-                        border-collapse: collapse;
-                        border: 1px solid #ccc;
-                    }}
-                    table.dataframe th, table.dataframe td {{
-                        border: 1px solid #ccc;
-                        padding: 8px 12px;
-                        text-align: center;
-                    }}
-                    table.dataframe th {{
-                        background-color: #eee;
-                    }}
-                </style>
-            </head>
-            <body>
-                <h2 style="text-align:center;">Hires by Quarter</h2>
-                {html_table}
-            </body>
-        </html>
-        """
-        return HTMLResponse(content=html_content)
-    except Exception as e:
-        return HTMLResponse(content=f"<h3>Error: {e}</h3>", status_code=500)
+@app.get("/data/departments-above-avg", response_class=HTMLResponse)
+async def table_departments_average():
+    return departments_above_average_html(df_joinned) 
 
