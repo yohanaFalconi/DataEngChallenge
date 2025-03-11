@@ -3,6 +3,7 @@ from google.cloud import bigquery
 import os
 import time
 import uuid
+from datetime import datetime
 from src.utils.clean_utils import (
     normalize_datetime_fields
 )
@@ -53,3 +54,7 @@ def get_connection(project_id):
                 print(f"- {dataset.dataset_id}")
     except Exception as e:
         print(f"Error al conectar a BigQuery: {e}")
+
+
+
+

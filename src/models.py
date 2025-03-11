@@ -9,7 +9,8 @@ from fastapi.responses import HTMLResponse
 from typing import List, Dict, Type
 from pydantic import BaseModel
 from pydantic import BaseModel, constr
-
+import os
+import datetime
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.utils.config import settings
 from src.models_get_json import( get_data_bd_json )
@@ -22,6 +23,9 @@ app = FastAPI(debug=config_class.DEBUG)
 short_string = constr(max_length=50)
 config = settings['bd']
 
+# logs errores 
+log_path = "logs/logs_data_errorPost.txt"
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
 #Modelos de las tablas
 class department(BaseModel):
     id: int
@@ -48,23 +52,6 @@ TABLE_MODELS: Dict[str, Type[BaseModel]] = {
 # allowed_tables = {"departments", "jobs", "hired_employees"}
 allowed_tables = TABLE_MODELS.keys()
 
-@app.get("/")
-async def root():
-    return {"message": "FastAPI app initialized"}
-
-# Manejo de errores para rutas no encontradas
-@app.exception_handler(StarletteHTTPException)
-async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
-    if exc.status_code == 404:
-        return HTMLResponse(content="<h1>Page Not Found</h1>", status_code=404)
-    return HTMLResponse(content=f"<h1>HTTP Error {exc.status_code}</h1>", status_code=exc.status_code)
-
-# Manejo de errores de validación 422 
-@app.exception_handler(RequestValidationError)
-async def custom_validation_exception_handler(request: Request, exc: RequestValidationError):
-    first_error = exc.errors()[0]["msg"]
-    return PlainTextResponse(content=first_error, status_code=422)
-
 # Permite insertar 1-1000 registros en una sola petición
 def validate_batch_size(items: list, min_size: int = 1, max_size: int = 1000):
     if not (min_size < len(items) <= max_size):
@@ -83,8 +70,47 @@ def remove_duplicates_items(items: List[BaseModel]) -> List[BaseModel]:
         if item_tuple not in seen:
             seen.add(item_tuple)
             unique_items.append(item)
-    
     return unique_items
+
+
+@app.get("/")
+async def root():
+    return {"message": "FastAPI app initialized"}
+
+# Manejo de errores para rutas no encontradas
+@app.exception_handler(StarletteHTTPException)
+async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
+    if exc.status_code == 404:
+        return HTMLResponse(content="<h1>Page Not Found</h1>", status_code=404)
+    return HTMLResponse(content=f"<h1>HTTP Error {exc.status_code}</h1>", status_code=exc.status_code)
+
+# Manejo de errores de validación 422 
+@app.exception_handler(RequestValidationError)
+async def custom_validation_exception_handler(request: Request, exc: RequestValidationError):
+    first_error = exc.errors()[0]["msg"]
+    return PlainTextResponse(content=first_error, status_code=422)
+
+
+# Maneja errores de validación del request y guarda en logs errores
+@app.exception_handler(RequestValidationError)
+async def custom_validation_exception_handler(request: Request, exc: RequestValidationError):
+    log_path = "logs/logs_data_errorPost.txt"
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    try:
+        body = await request.body()
+        parsed_body = body.decode("utf-8")
+    except Exception as e:
+        parsed_body = "Could not decode body."
+
+    with open(log_path, "a", encoding="utf-8") as log:
+        log.write("\n Validation Error \n")
+        log.write(f"Timestamp: {datetime.datetime.now()}\n")
+        log.write(f"Path: {request.url.path}\n")
+        log.write(f"Validation errors: {exc.errors()}\n")
+        log.write(f"Invalid body:\n{parsed_body}\n")
+
+    first_error = exc.errors()[0]["msg"]
+    return PlainTextResponse(content=first_error, status_code=422)
 
 
 def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:str):
@@ -94,17 +120,15 @@ def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:s
             batch_validation_error = validate_batch_size(items)
             if batch_validation_error:
                 return batch_validation_error
-            
+
             items = remove_duplicates_items(items)
             items = [item.dict() for item in items]
             df = pd.DataFrame(items)
-
             print('items',df)
-            
             upload_dataframe_to_bq(df, table_name, config.project_id, config.dataset_id)
             backup_table_to_avro(table_name, config.project_id, config.dataset_id)
-
             return items
+        
         except Exception as e:
             return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
 
@@ -121,6 +145,7 @@ for table_name, model in TABLE_MODELS.items():
             return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
     
     route_path_post = f"/data/{table_name}/add"
+    
     create_post_route(model, table_name,route_path_post)
     
 
