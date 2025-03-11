@@ -6,7 +6,6 @@ from fastapi.exception_handlers import http_exception_handler
 from google.cloud import bigquery
 from src.utils.config import settings
 from src.utils.bd_utils import (
-    load_bq_table,
     get_connection,
     load_bq_table_JSON
 )
@@ -14,6 +13,7 @@ from src.utils.bd_utils import (
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
 config = settings['bd']
 project_id = config.project_id
+dataset_id_init = config.dataset_id_init
 dataset_id = config.dataset_id
 client = bigquery.Client(project=project_id)
 
@@ -29,17 +29,5 @@ def get_data_bd_json(table_name):
 
 
 # get_data_bd_json('departments')
-get_data_bd_json('jobs')
+# get_data_bd_json('jobs')
 # get_dataframe('hired_employees')
-
-# def main():
-#     try:
-#         get_data_bd_json()
-#     #     get_dataframe('jobs')
-#     #     get_dataframe('hired_employees')
-#     except Exception as e:
-#         print(f"Error get_data: {e}")
-#         return
-    
-# if __name__ == "__main__":
-#     main()

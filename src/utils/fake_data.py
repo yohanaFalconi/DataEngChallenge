@@ -14,7 +14,7 @@ for i in range(1, 1002):
     record = {
         "id": i,
         "name": f"Employee {i}",
-        "hire_date": (base_date + timedelta(days=random.randint(0, 1500))).strftime("%Y-%m-%d"),
+        "datetime": (base_date + timedelta(days=random.randint(0, 1500))).strftime("%Y-%m-%d"),
         "department_id": random.choice(departments),
         "job_id": random.choice(jobs),
     }
