@@ -55,8 +55,6 @@ def get_departments_above_avg_hires(df):
 
 
 
-
-
 df =  load_bd_table('joinned_table')
 df = joinned_validation(df)
 print(df)

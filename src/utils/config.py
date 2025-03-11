@@ -1,8 +1,9 @@
 from decouple import config
 
 class bd_config():
-    project_id: str = config("big_query2__project_id")
-    dataset_id: str = config("big_query2_dataset_id")
+    project_id: str = config("big_query_project_id")
+    dataset_id_init: str = config("big_query_init_dataset_id")
+    dataset_id: str = config("big_query_dataset_id")
 
 class config:
     SECRET_KEY = config("SECRET_KEY")

@@ -241,3 +241,37 @@ ERROR: Missing column: datetime
 ERROR: Missing column: department_id
 ERROR: Missing column: job_id
 DATETIME ERROR: Failed to convert 'datetime': 'RowIterator' object is not subscriptable
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 0: '0' replaced with 'id'
+Column 1: '1' replaced with 'department'
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 0: '0' replaced with 'id'
+Column 1: '1' replaced with 'job'
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 0: '0' replaced with 'id'
+Column 1: '1' replaced with 'department'
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 0: '0' replaced with 'id'
+Column 1: '1' replaced with 'job'
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'

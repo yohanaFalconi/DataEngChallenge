@@ -1,0 +1,476 @@
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Rows dropped due to duplication ---
+Index 41 duplicated: {'id': 178, 'name': 'Petronilla Ashplant', 'datetime': '2021-04-13T06:30:31', 'department_id': 4.0, 'job_id': 41.0}
+Index 42 duplicated: {'id': 178, 'name': 'Petronilla Ashplant', 'datetime': '2021-04-13T06:30:31', 'department_id': 4.0, 'job_id': 41.0}
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Rows dropped due to duplication ---
+Index 41 duplicated: {'id': 178, 'name': 'Petronilla Ashplant', 'datetime': '2021-04-13T06:30:31', 'department_id': 4.0, 'job_id': 41.0}
+Index 42 duplicated: {'id': 178, 'name': 'Petronilla Ashplant', 'datetime': '2021-04-13T06:30:31', 'department_id': 4.0, 'job_id': 41.0}
+
+--- Trimmed string values ---
+Row 0, Column 'department': 'Product Management  ' -> 'Product Management'
+Row 1, Column 'department': 'Sales  ' -> 'Sales'
+Row 2, Column 'department': 'Research and Develop  ' -> 'Research and Develop'
+Row 3, Column 'department': 'Business Development  ' -> 'Business Development'
+Row 4, Column 'department': 'Engineering  ' -> 'Engineering'
+Row 5, Column 'department': 'Human Resources  ' -> 'Human Resources'
+Row 6, Column 'department': 'Services  ' -> 'Services'
+Row 7, Column 'department': 'Support  ' -> 'Support'
+Row 8, Column 'department': 'Marketing  ' -> 'Marketing'
+Row 9, Column 'department': 'Training  ' -> 'Training'
+Row 10, Column 'department': 'Legal  ' -> 'Legal'
+Row 11, Column 'department': 'Accounting  ' -> 'Accounting'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'department': 'Product Management'}
+Index 1 removed: {'id': 2, 'department': 'Sales'}
+Index 2 removed: {'id': 3, 'department': 'Research and Develop'}
+Index 3 removed: {'id': 4, 'department': 'Business Development'}
+Index 4 removed: {'id': 5, 'department': 'Engineering'}
+Index 5 removed: {'id': 6, 'department': 'Human Resources'}
+Index 6 removed: {'id': 7, 'department': 'Services'}
+Index 7 removed: {'id': 8, 'department': 'Support'}
+Index 8 removed: {'id': 9, 'department': 'Marketing'}
+Index 9 removed: {'id': 10, 'department': 'Training'}
+Index 10 removed: {'id': 11, 'department': 'Legal'}
+Index 11 removed: {'id': 12, 'department': 'Accounting'}
+
+--- Trimmed string values ---
+Row 12, Column 'job': 'Help Desk Technical ' -> 'Help Desk Technical'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 1, 'job': 'Marketing Assistant'}
+Index 1 removed: {'id': 2, 'job': 'VP Sales'}
+Index 2 removed: {'id': 3, 'job': 'Biostatistician IV'}
+Index 3 removed: {'id': 4, 'job': 'Account Representa'}
+Index 4 removed: {'id': 5, 'job': 'VP Marketing'}
+Index 5 removed: {'id': 6, 'job': 'Environmental Spec'}
+Index 6 removed: {'id': 7, 'job': 'Software Consultant'}
+Index 7 removed: {'id': 8, 'job': 'Office Assistant III'}
+Index 8 removed: {'id': 9, 'job': 'Information Systems'}
+Index 9 removed: {'id': 10, 'job': 'Desktop Support Tec'}
+Index 10 removed: {'id': 11, 'job': 'Financial Advisor'}
+Index 11 removed: {'id': 12, 'job': 'Computer Systems A'}
+Index 12 removed: {'id': 13, 'job': 'Help Desk Technical'}
+Index 13 removed: {'id': 14, 'job': 'Office Assistant II'}
+
+--- Header validation ---
+WARNING: Column names mismatch.
+Column 3: 'deparment_id' replaced with 'department_id'
+
+--- Rows dropped due to excessive NaNs ---
+Index 0 removed: {'id': 157, 'name': 'Kellia Barnibal', 'datetime': None, 'department_id': nan, 'job_id': nan}
+
+--- DATETIME FORMAT WARNINGS ---
+Row 97: Could not parse datetime value '2021-03-10T19:27:10Z'
+Row 112: Could not parse datetime value '2022-01-24T14:45:57Z'
+
+--- Rows dropped due to duplication ---
+Index 41 duplicated: {'id': 178, 'name': 'Petronilla Ashplant', 'datetime': '2021-04-13T06:30:31', 'department_id': 4.0, 'job_id': 41.0}
+Index 42 duplicated: {'id': 178, 'name': 'Petronilla Ashplant', 'datetime': '2021-04-13T06:30:31', 'department_id': 4.0, 'job_id': 41.0}
