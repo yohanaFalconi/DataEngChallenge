@@ -1,3 +1,4 @@
 .env
 bigquery-credencial.json
 bigquery-credencial_2.json
+__pycache__/
