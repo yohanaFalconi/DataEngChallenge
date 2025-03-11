@@ -18,6 +18,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.config import settings
 from src.models_get_json import( get_data_bd_json )
 from src.upload_data_to_bq import( upload_dataframe_to_bq)
+from src.backup import backup_table_to_avro
 from src.config import settings
 
 
@@ -90,6 +91,7 @@ def remove_duplicates_items(items: List[BaseModel]) -> List[BaseModel]:
             unique_items.append(item)
     
     return unique_items
+
 ''''''
 def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:str):
 
@@ -108,12 +110,13 @@ def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:s
             
             upload_dataframe_to_bq(df, table_name, config.project_id, config.dataset_id)
 
+            backup_table_to_avro("departments", config.project_id, config.dataset_id)
+
             return items
         except Exception as e:
             return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
 ''''''
 
-# items [Job(id=1, job='Developer'), Job(id=2, job='Data Anassslyst')]
 
 for table_name, model in TABLE_MODELS.items():
     route_path = f"/data/{table_name}"
@@ -129,5 +132,5 @@ for table_name, model in TABLE_MODELS.items():
     route_path_post = f"/data/{table_name}/add"
     create_post_route(model, table_name,route_path_post)
     
-  
+
 
