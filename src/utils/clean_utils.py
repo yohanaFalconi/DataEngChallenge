@@ -183,3 +183,15 @@ def drop_duplicates_ignore_columns(df, ignore_columns=None):
     except Exception as e:
         print(f"Error while dropping duplicate rows: {e}")
         return df
+
+# Elmina si hay duplicados en el DataFrame basados en id
+# def check_duplicates_by_ids(df, id_columns):
+#     duplicates = df[df.duplicated(subset=id_columns, keep=False)]
+#     has_duplicates = not duplicates.empty
+
+#     if has_duplicates:
+#         print(duplicates)
+#     else:
+#         print(f"No hay duplicados en las columnas {id_columns}.")
+
+#     return has_duplicates, duplicates
