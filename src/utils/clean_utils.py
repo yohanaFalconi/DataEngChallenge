@@ -172,3 +172,14 @@ def prepare_values_for_insert(df):
         values.append(f"({', '.join(row_values)})")
     return values
 
+#  Elimina duplicados excepto las especificadas en ignore_columns
+def drop_duplicates_ignore_columns(df, ignore_columns=None):
+    try:
+        if ignore_columns is None:
+            ignore_columns = []
+        
+        cols_to_check = [col for col in df.columns if col not in ignore_columns]
+        return df.drop_duplicates(subset=cols_to_check)
+    except Exception as e:
+        print(f"Error while dropping duplicate rows: {e}")
+        return df

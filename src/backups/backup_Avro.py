@@ -1,8 +1,8 @@
-from google.cloud import bigquery
-from fastavro import writer, reader, parse_schema
-import db_dtypes
 import pandas as pd
 import os
+from google.cloud import bigquery
+from fastavro import writer, reader, parse_schema
+from src.utils.clean_utils import drop_duplicates_ignore_columns
 
 # Generar el esquema .AVRO dinámicamente
 def infer_avro_schema(df, name):
@@ -38,25 +38,24 @@ def read_existing_avro(file_path):
     return pd.DataFrame(existing_records)
 
 # Devolver la diferencia de datos (nuevos registros .AVRO)
-
 def get_new_rows_to_append(df_new, backup_path):
     try:
         df_existing = read_existing_avro(backup_path)
         if df_existing.empty:
             return df_new.drop_duplicates()
 
-        combined = pd.concat([df_existing, df_new], ignore_index=True)
-        duplicates_removed = combined.drop_duplicates(keep=False)
-        df_new_unique = duplicates_removed.merge(df_new.drop_duplicates(), how='inner')
-        return df_new_unique
-
+        compare_cols = [col for col in df_new.columns if col != "uuid"]
+        merged = df_new.merge(df_existing[compare_cols], on=compare_cols, how='left', indicator=True)
+        new_rows = merged[merged['_merge'] == 'left_only']
+        new_rows = new_rows.drop(columns=["_merge"]).drop_duplicates()
+        return new_rows
     except FileNotFoundError:
         return df_new.drop_duplicates()
+
     except Exception as e:
         print(f"Error comparing backups: {e}")
         return pd.DataFrame()
     
-
 def backup_table_to_avro(table_name: str, project_id: str, dataset_id: str, output_dir: str = "backups"):
     try:
         client = bigquery.Client(project=project_id)
@@ -78,7 +77,7 @@ def backup_table_to_avro(table_name: str, project_id: str, dataset_id: str, outp
         schema = infer_avro_schema(df_new_unique, table_name)
         parsed_schema = parse_schema(schema)
 
-        with open(output_file, "ab") as out: 
+        with open(output_file, "wb") as out: 
             writer(out, parsed_schema, records)
         print(f"Backup actualizado y guardado en {output_file} sin duplicados.")
 

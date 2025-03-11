@@ -14,8 +14,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.utils.config import settings
 from src.models_get_json import( get_data_bd_json )
 from src.database.upload_data_to_db import( upload_dataframe_to_bq)
-from src.backup import backup_table_to_avro
-
+from src.backups.backup_Avro import backup_table_to_avro
 
 config_class = settings['development']
 app = FastAPI(debug=config_class.DEBUG)
