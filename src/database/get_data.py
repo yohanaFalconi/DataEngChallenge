@@ -83,6 +83,18 @@ os.makedirs("logs", exist_ok=True)
 #         print(f"Error:{e}")
 #         return pd.DataFrame()
 
+# Limpieza de la tabla joinned
+def joinned_validation(df):
+    try:
+        df = trim_strings(df)
+        df = remove_special_chars(df)
+        df = drop_na(df)
+        df = format_datetime(df, "datetime", log_path)
+        return df
+    except Exception as e:
+        print(f"Error: {e}")
+        return pd.DataFrame()
+
 # Limpieza de la tabla hired_employees
 def hired_employees_validation(df):
     try:
@@ -91,11 +103,10 @@ def hired_employees_validation(df):
         if missing_columns:
             df = validate_and_complete_headers(df, required_columns, log_path)
         
-        df = format_datetime(df, "datetime", log_path)
         df = trim_strings(df)
         df = remove_special_chars(df)
         df = drop_na(df)
-
+        df = format_datetime(df, "datetime", log_path)
         return df
     except Exception as e:
         print(f"Error: {e}")

@@ -8,7 +8,8 @@ from src.utils.bd_utils import (get_connection, add_uuid_column)
 from src.config import settings
 from src.database.get_data import (
    load_bd_table,
-   department_validation
+   department_validation,
+   joinned_validation
 )
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
@@ -54,14 +55,19 @@ def create_joinned_table(table_name, project_id, dataset_id):
         print(f"Error: Failed to create table '{table_name}': {e}")
         return pd.DataFrame()  
 
- # df_hired_employees =  load_bd_table('departments')
-        # df_hired_employees = department_validation(df_hired_employees)
-        # print(df_hired_employees)
-        # FROM `plucky-shell-453303-t9.jobs_database.hired_employees` hired
-        # JOIN `plucky-shell-453303-t9.jobs_database.departments` dep 
-        #   ON hired.department_id = dep.id
-        # JOIN `plucky-shell-453303-t9.jobs_database.jobs` job 
-        #   ON hired.job_id = job.id
+# create_joinned_table("joinned_table", project_id, dataset_id)
 
-create_joinned_table("joinned_table", project_id, dataset_id)
+
+df_joinned_table =  load_bd_table('joinned_table')
+df_joinned_table = joinned_validation(df_joinned_table)
+print(df_joinned_table)
+
+
+
+# FROM `plucky-shell-453303-t9.jobs_database.hired_employees` hired
+# JOIN `plucky-shell-453303-t9.jobs_database.departments` dep 
+#   ON hired.department_id = dep.id
+# JOIN `plucky-shell-453303-t9.jobs_database.jobs` job 
+#   ON hired.job_id = job.id
+
 
