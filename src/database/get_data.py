@@ -2,7 +2,7 @@ import os
 import time
 import pandas as pd
 from google.cloud import bigquery
-from src.config import settings
+from src.utils.config import settings
 from src.utils.clean_utils import (
     validate_and_complete_headers,
     format_datetime,

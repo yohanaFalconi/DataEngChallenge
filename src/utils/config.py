@@ -1,5 +1,4 @@
 from decouple import config
-import os
 
 class bd_config():
     project_id: str = config("big_query2__project_id")

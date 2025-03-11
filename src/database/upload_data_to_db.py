@@ -6,7 +6,7 @@ import os
 from src.database.get_data import get_validated_data
 from src.utils.clean_utils import prepare_values_for_insert
 from src.utils.bd_utils import (get_connection, add_uuid_column)
-from src.config import settings
+from src.utils.config import settings
 
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"

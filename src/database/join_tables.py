@@ -2,14 +2,8 @@ from google.cloud import bigquery
 from google.api_core.exceptions import NotFound
 import pandas as pd
 import os 
-from src.database.get_data import get_validated_data
-from src.utils.clean_utils import prepare_values_for_insert
-from src.utils.bd_utils import (get_connection, add_uuid_column)
-from src.config import settings
-from src.database.get_data import (
-   load_bd_table,
-   joinned_validation
-)
+from src.utils.bd_utils import (get_connection)
+from src.utils.config import settings
 
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
@@ -57,24 +51,6 @@ def create_joinned_table(table_name, project_id, dataset_id):
 
 # create_joinned_table("joinned_table", project_id, dataset_id)
 
-
-# def main():
-#     try:
-#         df =  load_bd_table('joinned_table')
-#         print('1111',df)
-
-#         df = joinned_validation(df)
-#         print('2222',df)
-#         # rows = [dict(row) for row in df]
-#         # df_joinned_table = pd.DataFrame(rows)
-
-#         return df
-#     except Exception as e:
-#         print(f"Error get_data: {e}")
-#         return
-
-# if __name__ == "__main__":
-#     main()
 
 # FROM `plucky-shell-453303-t9.jobs_database.hired_employees` hired
 # JOIN `plucky-shell-453303-t9.jobs_database.departments` dep 

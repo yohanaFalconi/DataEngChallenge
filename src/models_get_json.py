@@ -1,11 +1,10 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
-from starlette.exceptions import HTTPException as StarletteHTTPException
-from fastapi.exception_handlers import http_exception_handler
-from google.cloud import bigquery
-from src.config import settings
 import os
 import pandas as pd
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.exception_handlers import http_exception_handler
+from google.cloud import bigquery
+from src.utils.config import settings
 from src.utils.bd_utils import (
     load_bq_table,
     get_connection,

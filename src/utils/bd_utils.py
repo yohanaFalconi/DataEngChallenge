@@ -1,6 +1,5 @@
 import pandas as pd
 from google.cloud import bigquery
-from src.config import settings
 import os
 import time
 import uuid
