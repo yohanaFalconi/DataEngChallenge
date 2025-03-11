@@ -8,7 +8,7 @@ from fastapi.responses import PlainTextResponse
 from fastapi import Request
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
-from fastapi.exception_handlers import http_exception_handler
+# from fastapi.exception_handlers import http_exception_handler
 
 from typing import List, Dict, Type
 from pydantic import BaseModel, ValidationError
@@ -17,7 +17,7 @@ from pydantic import BaseModel, constr
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.config import settings
 from src.models_get_json import( get_data_bd_json )
-from src.upload_data_to_bq import( upload_dataframe_to_bq)
+from src.database.upload_data_to_db import( upload_dataframe_to_bq)
 from src.backup import backup_table_to_avro
 from src.config import settings
 

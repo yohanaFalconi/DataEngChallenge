@@ -3,11 +3,10 @@ from google.api_core.exceptions import NotFound
 
 import pandas as pd
 import os 
-from src.get_data import get_validated_data
+from src.database.get_data import get_validated_data
 from src.utils.clean_utils import prepare_values_for_insert
-from src.utils.bd_utils import get_connection
+from src.utils.bd_utils import (get_connection, add_uuid_column)
 from src.config import settings
-
 
 # Inicialización
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r".\src\bigquery-credencial_2.json"
@@ -27,6 +26,7 @@ def upload_dataframe_to_bq(df, table_name, project_id, dataset_id):
         if not isinstance(df, pd.DataFrame):
             df = pd.DataFrame(df)
 
+        df = add_uuid_column(df) 
         try:
             client.get_table(table_ref)
             table_exists = True
@@ -53,9 +53,9 @@ def upload_dataframe_to_bq(df, table_name, project_id, dataset_id):
             )
             """
             client.query(create_table_sql).result()
-            print(f"Tabla {table_ref} creada exitosamente.")
+            print(f"Tabla {table_ref} creada exitosamente")
         else:
-            print(f"La tabla {table_ref} ya existe. Se agregarán los datos.")
+            print(f"La tabla {table_ref} ya existe. Se agregarán los datos")
 
         # Preparar los valores para la inserción
         values = prepare_values_for_insert(df)

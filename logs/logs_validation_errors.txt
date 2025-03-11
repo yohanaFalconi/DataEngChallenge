@@ -221,3 +221,23 @@ DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'l
 DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
 DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
 DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+DATETIME ERROR: Failed to convert 'datetime': 'tuple' object has no attribute 'lower'
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'RowIterator' object is not subscriptable
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'RowIterator' object is not subscriptable
+ERROR: Missing column: id
+ERROR: Missing column: name
+ERROR: Missing column: datetime
+ERROR: Missing column: department_id
+ERROR: Missing column: job_id
+DATETIME ERROR: Failed to convert 'datetime': 'RowIterator' object is not subscriptable

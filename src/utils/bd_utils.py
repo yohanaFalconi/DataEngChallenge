@@ -1,12 +1,20 @@
 import pandas as pd
 from google.cloud import bigquery
 from src.config import settings
+import os
+import time
+import uuid
 from src.utils.clean_utils import (
     normalize_datetime_fields
 )
-import os
-import time
 
+#Agrega una columna con UUID únicos
+def add_uuid_column(df, column_name='uuid'):
+    if column_name not in df.columns:
+        df[column_name] = [str(uuid.uuid4()) for _ in range(len(df))]
+    return df
+
+#Permite subir los dataframes a la bd
 def load_bq_table(table_name,client,project_id,dataset_id):
     try:
         sql = f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}`"
@@ -17,7 +25,7 @@ def load_bq_table(table_name,client,project_id,dataset_id):
         print(f"Error: Failed to load table '{table_name}': {e}")
         return pd.DataFrame()  
     
-
+#Permite subir los json a la bd
 def load_bq_table_JSON(table_name,client,project_id,dataset_id):
     try:
         sql = f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}`"
@@ -35,7 +43,7 @@ def load_bq_table_JSON(table_name,client,project_id,dataset_id):
         print(f"Error: Failed to load table '{table_name}': {e}")
         return pd.DataFrame()  
     
-
+# Genera la conexión a la bd
 def get_connection(project_id):
     try:
         client = bigquery.Client(project=project_id)
