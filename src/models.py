@@ -87,9 +87,8 @@ def remove_duplicates_items(items: List[BaseModel]) -> List[BaseModel]:
     
     return unique_items
 
-''''''
-def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:str):
 
+def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:str):
     @app.post(route_path_post)
     async def insert_data(items: List[model]):  
         try:
@@ -104,13 +103,11 @@ def create_post_route(model: Type[BaseModel], table_name: str, route_path_post:s
             print('items',df)
             
             upload_dataframe_to_bq(df, table_name, config.project_id, config.dataset_id)
-
-            backup_table_to_avro("departments", config.project_id, config.dataset_id)
+            backup_table_to_avro(table_name, config.project_id, config.dataset_id)
 
             return items
         except Exception as e:
             return HTMLResponse(content=f"<h1>Error:</h1><pre>{str(e)}</pre>", status_code=500)
-''''''
 
 
 for table_name, model in TABLE_MODELS.items():
