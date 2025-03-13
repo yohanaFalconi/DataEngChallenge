@@ -20,7 +20,7 @@ client = bigquery.Client(project=project_id)
 
 get_connection(project_id)
 
-def upload_dataframe_to_bq(df, table_name, project_id, dataset_id=None):
+def upload_dataframe_to_bd(df, table_name, project_id, dataset_id=None):
     try:
         client = bigquery.Client(project=project_id)
         table_ref = f"{project_id}.{dataset_id}.{table_name}"
@@ -49,6 +49,7 @@ def upload_dataframe_to_bq(df, table_name, project_id, dataset_id=None):
                 else:
                     schema.append(f"{column_name} STRING")
 
+            print('schema',schema)
             create_table_sql = f"""
             CREATE TABLE `{table_ref}` (
                 {', '.join(schema)}
@@ -65,7 +66,8 @@ def upload_dataframe_to_bq(df, table_name, project_id, dataset_id=None):
         columns = [col[0] if isinstance(col, tuple) else col for col in df.columns]
         columns_str = ', '.join(columns)
 
-        insert_query = f"""INSERT INTO `{table_ref}` ({columns_str}) VALUES {values_str}"""        
+        insert_query = f"""INSERT INTO `{table_ref}` ({columns_str}) VALUES {values_str}""" 
+
         client.query(insert_query).result()
         
         print(f"Subida exitosa a la tabla: {table_ref}")
@@ -76,14 +78,13 @@ def upload_dataframe_to_bq(df, table_name, project_id, dataset_id=None):
 def main():
     try:
         df_departments, df_jobs, df_hired_employees = get_validated_data()
-        print('paso', df_hired_employees)
     except Exception as e:
         print(f"Error get_data: {e}")
         return
 
-    upload_dataframe_to_bq(df_departments, "departments", project_id, dataset_id)
-    upload_dataframe_to_bq(df_jobs, "jobs", project_id, dataset_id)
-    upload_dataframe_to_bq(df_hired_employees, "hired_employees", project_id, dataset_id=dataset_id)
+    upload_dataframe_to_bd(df_departments, "departments", project_id, dataset_id)
+    # upload_dataframe_to_bq(df_jobs, "jobs", project_id, dataset_id)
+    # upload_dataframe_to_bq(df_hired_employees, "hired_employees_", project_id, dataset_id=dataset_id)
 
 if __name__ == "__main__":
     main()

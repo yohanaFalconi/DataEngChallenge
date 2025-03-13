@@ -13,3 +13,26 @@ Invalid body:
     "department": "Department 2"
   }
 	]
+
+ Validation Error 
+Timestamp: 2025-03-13 12:24:22.975260
+Path: /data/hired_employees/add
+Validation errors: [{'type': 'int_parsing', 'loc': ('body', 0, 'id'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': 'rr4'}, {'type': 'missing', 'loc': ('body', 0, 'name'), 'msg': 'Field required', 'input': {'id': 'rr4', 'department': 'Department 1'}}, {'type': 'missing', 'loc': ('body', 0, 'datetime'), 'msg': 'Field required', 'input': {'id': 'rr4', 'department': 'Department 1'}}, {'type': 'missing', 'loc': ('body', 0, 'department_id'), 'msg': 'Field required', 'input': {'id': 'rr4', 'department': 'Department 1'}}, {'type': 'missing', 'loc': ('body', 0, 'job_id'), 'msg': 'Field required', 'input': {'id': 'rr4', 'department': 'Department 1'}}, {'type': 'int_parsing', 'loc': ('body', 1, 'id'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': 'nn'}, {'type': 'missing', 'loc': ('body', 1, 'name'), 'msg': 'Field required', 'input': {'id': 'nn', 'department': 'Department 2'}}, {'type': 'missing', 'loc': ('body', 1, 'datetime'), 'msg': 'Field required', 'input': {'id': 'nn', 'department': 'Department 2'}}, {'type': 'missing', 'loc': ('body', 1, 'department_id'), 'msg': 'Field required', 'input': {'id': 'nn', 'department': 'Department 2'}}, {'type': 'missing', 'loc': ('body', 1, 'job_id'), 'msg': 'Field required', 'input': {'id': 'nn', 'department': 'Department 2'}}]
+Invalid body:
+[
+{
+    "id": "rr4",
+    "department": "Department 1"
+  },
+  {
+    "id": "nn",
+    "department": "Department 2"
+  }
+	]
+
+ Validation Error 
+Timestamp: 2025-03-13 13:12:27.630432
+Path: /data/departments/add
+Validation errors: [{'type': 'missing', 'loc': ('body',), 'msg': 'Field required', 'input': None}]
+Invalid body:
+

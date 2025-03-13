@@ -3,6 +3,7 @@ import time
 import pandas as pd
 from google.cloud import bigquery
 from src.utils.config import settings
+from src.utils.bd_utils import (get_connection)
 from src.utils.clean_utils import (
     validate_and_complete_headers,
     format_datetime,
@@ -21,6 +22,8 @@ dataset_id_init = config.dataset_id_init
 dataset_id = config.dataset_id
 client = bigquery.Client(project=project_id)
 
+
+get_connection(project_id) 
 # Carga de data
 def load_bd_table(table_name, dataset_id = None):
     try:
@@ -79,6 +82,7 @@ def hired_employees_validation(df):
         df = drop_rows_with_mostly_nans(df, min_valid=3,log_path=log_path)
         df = format_datetime(df, "datetime", log_path=log_path)
         df = drop_duplicate_rows(df, log_path=log_path)
+        # print(df.head(5))
 
         return df
     except Exception as e:
@@ -94,8 +98,9 @@ def department_validation(df):
             df = validate_and_complete_headers(df, required_columns, log_path)
 
         df = trim_strings(df,log_path=log_path)
-        df = drop_rows_with_mostly_nans(df, min_valid=3,log_path=log_path)
+        df = drop_rows_with_mostly_nans(df, min_valid=2,log_path=log_path)
         df = drop_duplicate_rows(df, log_path=log_path)
+        print(df.head(5))
 
         return df
     except Exception as e:
@@ -111,7 +116,7 @@ def job_validation(df):
             df = validate_and_complete_headers(df, required_columns, log_path)
 
         df = trim_strings(df,log_path=log_path)
-        df = drop_rows_with_mostly_nans(df, min_valid=3,log_path=log_path)
+        df = drop_rows_with_mostly_nans(df, min_valid=2,log_path=log_path)
         df = drop_duplicate_rows(df, log_path=log_path)
 
         return df

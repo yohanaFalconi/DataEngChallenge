@@ -44,17 +44,22 @@ def validate_and_complete_headers(df, expected_columns, log_path=None):
 def format_datetime(df, datetime_col, log_path=None):
     try:
         original_values = df[datetime_col].copy()
-        df[datetime_col] = pd.to_datetime(df[datetime_col], format='mixed', errors='coerce')
+        df[datetime_col] = pd.to_datetime(df[datetime_col], errors='coerce', utc=True)
+
         failed_conversion = df[df[datetime_col].isna() & original_values.notna()]
         if log_path and not failed_conversion.empty:
-
+            os.makedirs(os.path.dirname(log_path), exist_ok=True)
             with open(log_path, "a", encoding="utf-8") as log:
                 log.write("\n--- DATETIME FORMAT WARNINGS ---\n")
                 for idx in failed_conversion.index:
                     log.write(f"Row {idx}: Could not parse datetime value '{original_values[idx]}'\n")
 
         df = df[df[datetime_col].notna()].copy()
-        df[datetime_col] = df[datetime_col].dt.strftime('%Y-%m-%dT%H:%M:%S')
+        if pd.api.types.is_datetime64_any_dtype(df[datetime_col]):
+            df.loc[:, datetime_col] = df[datetime_col].dt.strftime('%Y-%m-%dT%H:%M:%S')
+        else:
+            raise ValueError(f"Column '{datetime_col}' is not datetime-like after conversion.")
+
         return df
 
     except Exception as e:
@@ -86,7 +91,7 @@ def trim_strings(df, log_path=None):
 
 
 #Elimina nulos
-def drop_rows_with_mostly_nans(df, min_valid=3, log_path=None):
+def drop_rows_with_mostly_nans(df, min_valid=None, log_path=None):
     try:
         invalid_rows = df[df.notna().sum(axis=1) < min_valid]
         if not invalid_rows.empty:

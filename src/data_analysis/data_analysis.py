@@ -24,8 +24,6 @@ def get_hires_by_quarter(df):
 
       hires_by_quarter = hires_by_quarter[['department', 'job', 'Q1', 'Q2', 'Q3', 'Q4']]
       hires_by_quarter = hires_by_quarter.sort_values(by=['department', 'job'])
-      print(hires_by_quarter)
-
       return hires_by_quarter
 
    except Exception as e:
@@ -46,7 +44,6 @@ def get_departments_above_avg_hires(df):
       mean_hires = hires_by_department['hired'].mean()
       above_avg = hires_by_department[hires_by_department['hired'] >= mean_hires]
       result = above_avg.sort_values(by='hired', ascending=False).reset_index(drop=True)
-      print(result)
       return result
 
    except Exception as e:

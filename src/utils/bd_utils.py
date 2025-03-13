@@ -15,7 +15,7 @@ def add_uuid_column(df, column_name='uuid'):
     return df
 
 #Permite subir los dataframes a la bd
-def load_bq_table(table_name,client,project_id,dataset_id):
+def fetch_table_as_dataframe(table_name,client,project_id,dataset_id):
     try:
         sql = f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}`"
         query_job = client.query(sql)
@@ -25,8 +25,8 @@ def load_bq_table(table_name,client,project_id,dataset_id):
         print(f"Error: Failed to load table '{table_name}': {e}")
         return pd.DataFrame()  
     
-#Permite subir los json a la bd
-def load_bq_table_JSON(table_name,client,project_id,dataset_id):
+#Permite leer los json a la bd
+def fetch_table_as_json(table_name,client,project_id,dataset_id):
     try:
         sql = f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}`"
 
