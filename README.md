@@ -1,6 +1,6 @@
-# 🚀 Data Engineering Challenge - Globant
+# 🚀 Data Engineering Challenge
 
-Este proyecto resuelve un reto de **Ingeniería de Datos** para **Globant**, enfocado en el diseño e implementación de una solución de carga, validación, consulta y respaldo de datos relacionados a contrataciones de empleados.
+Este proyecto resuelve un reto de **Ingeniería de Datos**, enfocado en el diseño e implementación de una solución de carga, validación, consulta y respaldo de datos relacionados a contrataciones de empleados.
 
 ---
 
